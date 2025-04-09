@@ -28,9 +28,9 @@ document.addEventListener('keydown', (e) => {
     const speed = 10;
     if (!gameRunning) return;
 
-    if (e.key === 'ArrowLeft' && playerX > 0) {
+    if (e.key === 'a' && playerX > 0) {
         playerX -= speed;
-    } else if (e.key === 'ArrowRight' && playerX < game.clientWidth - 60) {
+    } else if (e.key === 'd' && playerX < game.clientWidth - 60) {
         playerX += speed;
     } else if (e.code === 'Space') {
         shootPlayer();
