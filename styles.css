@@ -1,20 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   margin: 0;
-  background-color: black;
+  background: radial-gradient(ellipse at center, #000 0%, #111 100%);
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  overflow: hidden;
   font-family: "Orbitron", sans-serif;
 }
 
 #game {
-  width: 600px;
-  height: 600px;
-  background-color: linear-gradient(#111, #222);
+  width: 100%;
+  height: 100%;
   position: relative;
   overflow: hidden;
-  border: 2px solid white;
+  filter: contrast(1.2) brightness(1.1);
+}
+
+#game::after {
+  content:"";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.03),rgba(255, 255, 255, 0.03) 2px, transparent 2px, transparent 4px);
+  z-index: 1000;
+  pointer-events: none;
 }
 
 #player {
@@ -27,6 +45,8 @@ body {
   position: absolute;
   bottom: 20px;
   left: calc(50% - 30px);
+  filter: drop-shadow(0 0 8px #FCFBF4);
+  z-index: 10;
 }
 
 #lives, #score {
@@ -34,6 +54,7 @@ body {
   font-size: 20px;
   color: white;
   z-index: 100;
+  text-shadow: 0 0 6px white;
 }
 
 #lives {
@@ -60,6 +81,7 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 200;
+  text-shadow: 0 0 10px white;
 }
 
 #start-btn,
@@ -80,6 +102,16 @@ body {
   transform: scale(1.05);
 }
 
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: white;
+  opacity: 0.8;
+  animation: starMove linear infinite;
+  z-index: 0;
+}
+
 .enemy {
   width: 50px;
   height: 50px;
@@ -89,13 +121,18 @@ body {
   background-size: contain;
   position: absolute;
   top: 0;
+  filter: drop-shadow(0 0 8px #BE5F6B);
+  z-index: 10;
 }
 
 .bullet-player {
   width: 8px;
   height: 20px;
-  background-color: white;
+  background-color: #FEFEF9;
+  box-shadow: 0 0 6px #FEFEF9;
   position: absolute;
+  border-radius: 2px;
+  z-index: 5;
 }
 
 .bullet-enemy {
@@ -106,5 +143,16 @@ body {
   background-position: center;
   background-size: contain;
   position: absolute;
+  filter: drop-shadow(0 0 6px #BE5F6B);
+  z-index: 5;
+}
+
+@keyframes starMove {
+  from {
+    transform: translateY(-10px);
+  }
+  to {
+    transform: translateY(110vh);
+  }
 }
 

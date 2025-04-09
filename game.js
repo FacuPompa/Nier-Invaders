@@ -4,15 +4,20 @@ const startScreen = document.getElementById('start-screen');
 const victoryScreen = document.getElementById('victory-screen');
 const startBtn = document.getElementById('start-btn');
 const restartBtn = document.getElementById('restart-btn');
+const bgMusic = document.getElementById('bg-music');
+bgMusic.volume = 0.2;
+
 
 const enemies = [];
 const bulletsPlayer = [];
 const bulletsEnemy = [];
 
+
 let playerX = game.clientWidth / 2 - 30;
 let playerLives = 3;
 let score = 0;
 let gameRunning = false;
+
 
 const livesDisplay = document.createElement('div');
 livesDisplay.id = 'lives';
@@ -23,6 +28,7 @@ const scoreDisplay = document.createElement('div');
 scoreDisplay.id = 'score';
 scoreDisplay.textContent = `Puntos: ${score}`;
 game.appendChild(scoreDisplay);
+
 
 document.addEventListener('keydown', (e) => {
     const speed = 10;
@@ -39,6 +45,7 @@ document.addEventListener('keydown', (e) => {
     player.style.left = `${playerX}px`;
 });
 
+
 function shootPlayer(){
     const bullet = document.createElement('div');
     bullet.classList.add('bullet-player');
@@ -47,6 +54,18 @@ function shootPlayer(){
     game.appendChild(bullet);
     bulletsPlayer.push(bullet);
 }
+
+function createStars() {
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.left = `${Math.random() * window.innerWidth}px`;
+      star.style.top = `${Math.random() * window.innerHeight}px`;
+      star.style.animationDuration = `${Math.random() * 5 + 5}s`;
+      game.appendChild(star);
+    }
+  }
+  createStars();
 
 function movePlayerBullets() {
     bulletsPlayer.forEach((bullet, index) => {
@@ -137,14 +156,18 @@ function updateScore() {
     scoreDisplay.textContent = `Puntos: ${score}`;
 }
 
+
 startBtn.addEventListener('click', () => {
     startScreen.style.display = 'none';
     gameRunning = true;
+    bgMusic.volume = 0.1;
+    bgMusic.play();
 });
 
 restartBtn.addEventListener('click', () => {
     location.reload();
 });
+
 
 setInterval(() => {
     if (!gameRunning) return;
