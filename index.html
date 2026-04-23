@@ -15,8 +15,12 @@
 
 <body>
   <div id="start-screen">
-    <h1>NieR Invaders</h1>
-    <button id="start-btn">Iniciar juego</button>
+    <h1>NieR: Invaders</h1>
+    <p class="screen-copy">Elegí un modo para comenzar la misión</p>
+    <div class="mode-buttons">
+      <button id="start-btn">Modo niveles</button>
+      <button id="survival-btn">Modo libre</button>
+    </div>
   </div>
 
   <div id="victory-screen" style="display: none;">
@@ -25,11 +29,21 @@
     <button id="restart-btn">Volver a jugar</button>
   </div>
 
+  <div id="pause-screen" class="overlay">
+    <div class="menu">
+      <h2>Juego en Pausa</h2>
+      <button id="resume-btn">Reanudar</button>
+      <button id="restart-btn-pause">Reiniciar</button>
+      <button id="menu-btn">Volver al Menú</button>
+    </div>
+  </div>
+
   <div id="game">
     <div id="player"></div>
   </div>
-  
+
   <audio id="bg-music" src="./assets/song.mp3" autoplay loop></audio>
   <script src="game.js"></script>
 </body>
+
 </html>
